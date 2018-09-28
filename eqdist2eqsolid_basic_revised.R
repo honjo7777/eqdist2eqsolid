@@ -7,7 +7,7 @@ library(png)
 
 #following lines are changed if directory, file name, threshold value, rgb ratio are changed
 #setwd("/Users/xxx/example") #directory of the Theta's image file
-setwd("/Users/honjo/Desktop/eqdist2eqsolid")
+setwd("/Users/xxx/example")
 fname0<-"example_dist" #file name
 fname<-paste(fname0,".jpg",sep="") #file name + .jpg
 
@@ -74,14 +74,14 @@ for(i in -xdim2:-1){
     x2[i+xdim2+1,j+xdim2,1:3]<-x[i2+xdim2+1,j2+xdim2,1:3]
   }
 }
-writePNG(x2,paste(fname0,"_area.png",sep=""))
+writePNG(x2,paste(fname0,"_solid.png",sep=""))
 
 #making equal-area binary image
 x<-(x2[,,1]*r_ratio+x2[,,2]*g_ratio+x2[,,3]*b_ratio)/(r_ratio+g_ratio+b_ratio)
 x[x>=xth]<-1
 x[x<xth]<-0
 
-writePNG(x,paste(fname0,"_area_bi.png", sep=""))
+writePNG(x,paste(fname0,"_solid_bi.png", sep=""))
 
 #calculation of sky view factor from equal-area image
 (svf<-sum(x)/(pi*xdim2^2))
